@@ -8,6 +8,5 @@ class MyCustomRuntime(MLModel):
 
   async def predict(self, payload: InferenceRequest) -> InferenceResponse:
     return InferenceResponse(
-      outputs=[1, 2, 3],
-      parameters=Parameters(headers={"foo": "bar"}
+      outputs=[1, 2, 3]
     )
