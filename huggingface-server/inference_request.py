@@ -6,7 +6,7 @@ inference_request = {
           "name": "args",
           "shape": [1],
           "datatype": "BYTES",
-          "data": ["this is a test"],
+          "data": ["Hi, how are you doing?"],
         }
     ]
 }
