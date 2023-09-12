@@ -10,4 +10,8 @@ class MyCustomRuntime(MLModel):
     print("\n \n \n \n")
     print(payload)
     print("\n\n\n\n")
-    return 1 + 1
+    return InferenceResponse(
+      # Include any actual outputs from inference
+      outputs=[],
+      parameters=Parameters(headers={"foo": "bar"})
+    )
