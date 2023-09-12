@@ -4,8 +4,7 @@
     "parameters": {
         "extra": {
             "task": "text-generation",
-            "pretrained_model": "distilgpt2",
-            "optimum_model": true
+            "pretrained_model": "distilgpt2"
         }
     }
 }
