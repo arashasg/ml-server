@@ -11,5 +11,5 @@ inference_request = {
     ]
 }
 
-res = requests.post("http://localhost:8080/v2/models/empty-model2/infer", json=inference_request).json()
+res = requests.post("http://localhost:8080/v2/models/empty-model/infer", json=inference_request).json()
 print(res)
