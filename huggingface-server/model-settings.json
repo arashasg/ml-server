@@ -1,0 +1,13 @@
+{
+    "name": "transformer",
+    "implementation": "mlserver_huggingface.HuggingFaceRuntime",
+    "max_batch_size": 128,
+    "max_batch_time": 1,
+    "parameters": {
+        "extra": {
+            "task": "text-generation",
+            "device": -1,
+            "pretrained_model":"Arashasg/WikiBert2WikiBert"
+        }
+    }
+}
