@@ -1,15 +1,15 @@
 import requests
 
-inference_request = {
-    "inputs": [
-        {
-          "name": "args",
-          "shape": [1],
-          "datatype": "BYTES",
-          "data": ["Hi, how are you doing?"],
-        }
-    ]
-}
+import numpy as np
 
-res = requests.post("http://localhost:8080/v2/models/empty-model/infer", json=inference_request).json()
+from mlserver.types import InferenceRequest
+from mlserver.codecs import NumpyCodec
+
+x_0 = np.array([28.0])
+inference_request = InferenceRequest(
+    inputs=[
+        NumpyCodec.encode_input(name="marriage", payload=x_0)
+    ]
+)
+res = requests.post("http://localhost:8080/v2/models/empty-model/infer", json=inference_request.dict()).json()
 print(res)
