@@ -7,10 +7,10 @@ spec:
   predictors:
     - name: default
       graph:
-        name: my-hello-world
+        name: json-hello-world
         type: MODEL
       componentSpecs:
         - spec:
             containers:
-              - name: my-hello-world
+              - name: json-hello-world
                 image: my-hello-world:0.1
