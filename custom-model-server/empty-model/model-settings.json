@@ -1,4 +1,4 @@
 {
-  "name": "empty-model",
-  "implementation": "models.MyCustomRuntime"
+    "name": "json-hello-world",
+    "implementation": "jsonmodels.JsonHelloWorldModel"
 }
