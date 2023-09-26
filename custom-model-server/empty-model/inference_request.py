@@ -1,15 +1,35 @@
 import requests
+import json
+from mlserver.types import InferenceResponse
+from mlserver.codecs.string import StringRequestCodec
+from pprint import PrettyPrinter
 
-import numpy as np
+pp = PrettyPrinter(indent=1)
 
-from mlserver.types import InferenceRequest
-from mlserver.codecs import NumpyCodec
+inputs = {"name": "Foo Bar", "message": "Hello from Client (REST)!"}
 
-x_0 = np.array([28.0])
-inference_request = InferenceRequest(
-    inputs=[
-        NumpyCodec.encode_input(name="", payload=x_0)
+# NOTE: this uses characters rather than encoded bytes. It is recommended that you use the `mlserver` types to assist in the correct encoding.
+inputs_string = json.dumps(inputs)
+
+inference_request = {
+    "inputs": [
+        {
+            "name": "echo_request",
+            "shape": [len(inputs_string)],
+            "datatype": "BYTES",
+            "data": [inputs_string],
+        }
     ]
-)
-res = requests.post("http://localhost:8080/v2/models/empty-model/infer", json=inference_request.dict()).json()
-print(res)
+}
+
+endpoint = "http://localhost:8080/v2/models/json-hello-world/infer"
+response = requests.post(endpoint, json=inference_request)
+
+print(f"full response:\n")
+print(response)
+# retrive text output as dictionary
+inference_response = InferenceResponse.parse_raw(response.text)
+raw_json = StringRequestCodec.decode_response(inference_response)
+output = json.loads(raw_json[0])
+print(f"\ndata part:\n")
+pp.pprint(output)
