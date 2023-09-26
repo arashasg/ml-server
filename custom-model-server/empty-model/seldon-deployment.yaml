@@ -13,4 +13,4 @@ spec:
         - spec:
             containers:
               - name: json-hello-world
-                image: my-hello-world:0.1
+                image: arashasg/my-hello-world:0.1
